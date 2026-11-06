@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<!-- saved from url=(0090)file:///C:/Users/themo/AppData/Local/Microsoft/Windows/INetCache/IE/GV76H8SS/index[1].html -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino Break aceuil</title>
+    <link href="./Casino Break aceuil_files/css2" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #E63946; /* Rouge plus vif */
+            --primary-dim: rgba(230, 57, 70, 0.2);
+            --bg-black: #050505; /* Noir plus profond */
+            --bg-card: #121212;
+            --text-main: #ffffff;
+            --text-dim: #999999;
+            --border: #222222;
+            --glow: rgba(230, 57, 70, 0.7);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { 
+            font-family: 'DM Sans', sans-serif; 
+            color: var(--text-main); 
+            background-color: var(--bg-black);
+            line-height: 1.6; 
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Style pour masquer l'Iframe de musique tout en garantissant sa lecture */
+        .bg-music-stream {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Canvas pour les particules en arrière-plan */
+        #bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none; /* Laisse cliquer à travers */
+        }
+
+        /* Forcer le contenu à être au-dessus du canvas */
+        header, section, main, footer {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Barre de navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+        .logo { 
+            font-family: 'Orbitron', sans-serif;
+            font-size: 26px; 
+            font-weight: 700; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Hero Section stylisée */
+        .hero {
+            height: 90vh;
+            background: radial-gradient(circle at center, rgba(230, 57, 70, 0.1) 0%, transparent 70%),
+                        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.9)), 
+                        url('https://assets-v2.codedesign.ai/storage/v1/object/public/6a038727d602aa2abd3dfd1b_44c3f7f7/asset-d5c665bd');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero-content h1 { 
+            font-size: clamp(3rem, 8vw, 5.5rem); 
+            font-weight: 700;
+            line-height: 0.9;
+            margin-bottom: 40px;
+            background: linear-gradient(to bottom, #fff 40%, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Boutons de style Pro (Forme angulaire + Typo Orbitron + Lueur) */
+        .btn {
+            display: inline-block;
+            padding: 18px 50px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px; 
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 25px var(--glow);
+            background-color: #ff4d5a;
+        }
+        .btn-outline { 
+            font-family: 'Orbitron', sans-serif;
+            background: transparent; 
+            border: 2px solid var(--border); 
+            padding: 10px 25px; 
+            font-size: 0.85rem;
+            color: var(--text-main);
+            box-shadow: none;
+            letter-spacing: 1px;
+        }
+        .btn-outline:hover { 
+            border-color: var(--primary); 
+            color: var(--primary);
+            box-shadow: 0 0 10px var(--primary-dim);
+        }
+
+        /* Bannière Fun */
+        .fun-banner {
+            padding: 50px 10%;
+            background: linear-gradient(90deg, transparent, rgba(17, 17, 17, 0.6), transparent);
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .fun-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 6px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+        }
+        .fun-highlight { color: var(--primary); font-weight: 700; }
+
+        /* Section Jeux */
+        .section { padding: 100px 8%; text-align: center; }
+        .section-title { 
+            font-size: 2.5rem; 
+            margin-bottom: 60px; 
+            letter-spacing: 2px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+            margin: 15px auto;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+        
+        /* Cartes de jeux fixes */
+        .card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            user-select: none;
+        }
+        .card img { 
+            width: 100%; 
+            height: 240px; 
+            object-fit: cover; 
+        }
+        .card h3 { padding: 25px; font-size: 1.2rem; font-weight: 700; }
+
+        /* Footer profil */
+        footer {
+            background: #000;
+            padding: 100px 10% 60px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+        .profile-container { position: relative; display: inline-block; margin-bottom: 25px; }
+        .profile-img { 
+            width: 120px; 
+            height: 120px; 
+            border-radius: 50%; 
+            padding: 0;
+            object-fit: cover;
+        }
+        .footer-name { 
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem; 
+            margin-bottom: 5px; 
+            letter-spacing: 1px;
+        }
+        
+        /* Alignement boutons de contact */
+        .footer-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+        .footer-actions .btn {
+            width: 100%;
+        }
+
+        /* RETOUR À L'ANCIEN STYLE POUR LES BOUTONS LIENS (Instagram / PayPal) */
+        .btn-link-img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 45px;
+            border-radius: 50px; /* Retour aux coins arrondis style pilule */
+            background: #ffffff;
+            box-shadow: 0 10px 20px rgba(255,255,255,0.05);
+            border: none;
+            transition: all 0.4s ease;
+        }
+        .btn-link-img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255,255,255,0.1);
+            background: #ffffff;
+        }
+        .btn-link-img img {
+            max-height: 45px; /* Taille d'origine */
+            width: auto;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: filter 0.4s ease, transform 0.4s ease;
+        }
+        .btn-link-img:hover img {
+            filter: grayscale(0%);
+        }
+        
+        /* --- RESPONSIVE TELEPHONE --- */
+        @media (max-width: 768px) {
+            header { padding: 15px 5%; }
+            
+            /* On force l'affichage de Info et Contact sur mobile */
+            .nav-links .btn-outline { 
+                display: inline-block; 
+                padding: 8px 15px; 
+                font-size: 0.75rem;
+            }
+            
+            /* On masque le bouton Jouer de la navbar uniquement sur mobile */
+            .nav-links .btn-play-nav { 
+                display: none; 
+            }
+            
+            .nav-links {
+                gap: 8px; /* On resserre un peu l'espace sur petit écran */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <iframe class="bg-music-stream" width="1px" height="1px" src="./Casino Break aceuil_files/AqY4RtNeJOI.html" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+    </iframe>
+
+    <canvas id="bg-particles" width="2752" height="1023"></canvas>
+
+    <header>
+        <a href="file:///C:/Users/themo/AppData/Local/Microsoft/Windows/INetCache/IE/GV76H8SS/index[1].html#" class="logo">CASINO BREAK</a>
+        <div class="nav-links">
+            <!-- Modification du lien Info pour aller vers la nouvelle URL -->
+            <a href="https://unebifflepas2.github.io/info/" class="btn btn-outline">Info</a>
+            <a href="file:///C:/Users/themo/AppData/Local/Microsoft/Windows/INetCache/IE/GV76H8SS/index[1].html#contact" class="btn btn-outline">Contact</a>
+            <!-- Modification du bouton Jouer de la navbar -->
+            <a href="https://unebifflepas2.github.io/Break-Casino/" class="btn btn-play-nav" style="padding: 12px 30px; font-size: 0.9rem;">Jouer</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>JOUEZ, GAGNEZ,<br>AMUSEZ-VOUS</h1>
+            <!-- Modification du gros bouton central Lancer le Jeux -->
+            <a href="https://unebifflepas2.github.io/Break-Casino/" class="btn">Lancer le Jeux</a>
+        </div>
+    </section>
+
+    <section class="fun-banner">
+        <p class="fun-text">TESTER NOS <span class="fun-highlight">MINI JEUX FUN</span></p>
+    </section>
+
+    <main>
+        <section class="section">
+            <h2 class="section-title">Jeux Populaires</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="./Casino Break aceuil_files/photo-1744974086616-8cd4368609ba.jpeg" alt="Slots">
+                    <h3>Slots</h3>
+                </div>
+                <div class="card">
+                    <img src="./Casino Break aceuil_files/asset-66b07ddc" alt="Roulette">
+                    <h3>Roulette</h3>
+                </div>
+                <div class="card">
+                    <img src="./Casino Break aceuil_files/asset-76d8b092" alt="Dés">
+                    <h3>Dés</h3>
+                </div>
+                <div class="card">
+                    <img src="./Casino Break aceuil_files/asset-17b40156" alt="Mini Jeux">
+                    <h3>Mini Jeux</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="profile-container">
+            <img src="./Casino Break aceuil_files/eli.gif" alt="Bisk Profile" class="profile-img">
+        </div>
+        <h3 class="footer-name">Bisk</h3>
+        <p style="color: var(--text-dim); margin-bottom: 30px; letter-spacing: 1px;">DEVELOPER</p>
+        
+        <div class="footer-actions">
+            <a href="https://www.instagram.com/m_kx13/" target="_blank" class="btn btn-link-img">
+                <img src="./Casino Break aceuil_files/instagram-logo.png" alt="Instagram">
+            </a>
+            <a href="https://www.paypal.me/Bisk1M" target="_blank" class="btn btn-link-img">
+                <img src="./Casino Break aceuil_files/images" alt="Soutenir">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('bg-particles');
+        const ctx = canvas.getContext('2d');
+
+        let particlesArray = [];
+        const numberOfParticles = 45;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.4 - 0.2;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                else if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                else if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(230, 57, 70, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+    </script>
+
+
+
+</body></html>
